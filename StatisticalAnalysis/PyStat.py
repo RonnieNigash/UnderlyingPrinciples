@@ -25,8 +25,17 @@ class PyStat(tk.Frame):
 		self.windSpeed.pack()
 		self.windSpeed.insert(0, "")
 
-		self.calculate = tk.Button(parent, text = "Calculate!")
+		self.calculate = tk.Button(parent, text = "Calculate!", command = calculateValues)
 		self.calculate.pack()
+	
+
+	def calculateValues(self):
+		pass
+		# @TODO
+		# Take values from the past XX days, (week? month?)
+		# Scraped from HTML page -- new method?
+		# Input values into label fields above 
+
 
 if __name__ == "__main__":
 	root = tk.Tk()
