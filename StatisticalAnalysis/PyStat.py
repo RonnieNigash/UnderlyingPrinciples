@@ -29,18 +29,18 @@ class PyStat(tk.Frame):
 		self.wind_speed.pack()
 		self.wind_speed.insert(0, "")
 
-		self.calculate = tk.Button(parent, text = "Calculate!", command = calculate_values)
+		self.calculate = tk.Button(parent, text = "Calculate!", command = self.calculate_values)
 		self.calculate.pack()
 
 
 	def calculate_values(self):
-		data = scrape_data();
+		data = self.scrape_data();
 		# @TODO
 		# Take values from the past XX days, (week? month?)
 		# Scraped from HTML page -- new method?
 		# Input values into label fields above
 
-	def scrap_data():
+	def scrape_data(self):
 		data_dictionary = {};
 
 		page = requests.get("http://lpo.dt.navy.mil/data/DM/Environmental_Data_Deep_Moor_2015.txt")
@@ -49,8 +49,9 @@ class PyStat(tk.Frame):
 
 		today = date.today().isoformat() # of the form YYYY-MM-DD
 		today = today.replace("-", "_") # of the form YYYY_MM_DD which matches data set
-
 		
+		for tag in soup.find_all(today): # print out all of the date lines that match our own
+			print tag
 
 		return data_dictionary;
 
