@@ -1,15 +1,8 @@
 import Tkinter as tk
 
-
-
-class Main(tk.Frame):
-	pass
-
-
 class PyStat(tk.Frame):
 	def __init__(self, parent, *args, **kwargs):
 		tk.Frame.__init__(self, parent, *args, **kwargs)
-		self.main = Main(self)	
 
 		self.airTempLabel = tk.Label(parent, text = "Air Temp")
 		self.airTempLabel.pack()
@@ -32,7 +25,8 @@ class PyStat(tk.Frame):
 		self.windSpeed.pack()
 		self.windSpeed.insert(0, "")
 
-		self.main.pack(side = "right", fill = "both", expand = True)
+		self.calculate = tk.Button(parent, text = "Calculate!")
+		self.calculate.pack()
 
 if __name__ == "__main__":
 	root = tk.Tk()
