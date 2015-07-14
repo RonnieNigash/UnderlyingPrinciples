@@ -11,18 +11,31 @@ class PyStat(tk.Frame):
 		tk.Frame.__init__(self, parent, *args, **kwargs)
 		self.main = Main(self)	
 
-		self.label1 = tk.Label(parent, text = "Air Temp")
-		self.label1.pack()
-		
-		self.label2 = tk.Label(parent, text = "Barometric Pressure")
-		self.label2.pack()
+		self.airTempLabel = tk.Label(parent, text = "Air Temp")
+		self.airTempLabel.pack()
 
-		self.label3 = tk.Label(parent, text = "Wind Speed")
-		self.label3.pack()
+		self.airTemp = tk.Entry(parent, justify = tk.LEFT)
+		self.airTemp.pack()
+		self.airTemp.insert(0, "")
+
+		self.barPresLabel = tk.Label(parent, text = "Barometric Pressure")
+		self.barPresLabel.pack()
+
+		self.barPres = tk.Entry(parent, justify = tk.LEFT)
+		self.barPres.pack()
+		self.barPres.insert(0, "")
+
+		self.windSpeedLabel = tk.Label(parent, text = "Wind Speed")
+		self.windSpeedLabel.pack()
+		
+		self.windSpeed = tk.Entry(parent, justify = tk.LEFT)
+		self.windSpeed.pack()
+		self.windSpeed.insert(0, "")
 
 		self.main.pack(side = "right", fill = "both", expand = True)
 
 if __name__ == "__main__":
 	root = tk.Tk()
 	PyStat(root).pack(side = "top", fill = "both", expand = True)
+	root.title("Statistical Analysis")
 	root.mainloop()
