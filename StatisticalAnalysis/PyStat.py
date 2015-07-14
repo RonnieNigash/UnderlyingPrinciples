@@ -1,6 +1,8 @@
 import Tkinter as tk
 from bs4 import BeautifulSoup
 import requests
+import time
+from datetime import date
 
 class PyStat(tk.Frame):
 	def __init__(self, parent, *args, **kwargs):
@@ -43,9 +45,13 @@ class PyStat(tk.Frame):
 
 		page = requests.get("http://lpo.dt.navy.mil/data/DM/Environmental_Data_Deep_Moor_2015.txt")
 		data = page.text
-		soup = BeautifulSoup(data)
+		soup = BeautifulSoup(data) # our dates (from page) are of the form YYYY_MM_DD
+
+		today = date.today().isoformat() # of the form YYYY-MM-DD
+		today = today.replace("-", "_") # of the form YYYY_MM_DD which matches data set
 
 		
+
 		return data_dictionary;
 
 if __name__ == "__main__":
