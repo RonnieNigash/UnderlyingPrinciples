@@ -1,4 +1,6 @@
 import Tkinter as tk
+from bs4 import BeautifulSoup
+import requests
 
 class PyStat(tk.Frame):
 	def __init__(self, parent, *args, **kwargs):
@@ -30,12 +32,21 @@ class PyStat(tk.Frame):
 
 
 	def calculate_values(self):
-		pass
+		data = scrape_data();
 		# @TODO
 		# Take values from the past XX days, (week? month?)
 		# Scraped from HTML page -- new method?
 		# Input values into label fields above
 
+	def scrap_data():
+		data_dictionary = {};
+
+		page = requests.get("http://lpo.dt.navy.mil/data/DM/Environmental_Data_Deep_Moor_2015.txt")
+		data = page.text
+		soup = BeautifulSoup(data)
+
+		
+		return data_dictionary;
 
 if __name__ == "__main__":
 	root = tk.Tk()
