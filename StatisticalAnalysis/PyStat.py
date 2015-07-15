@@ -4,6 +4,8 @@ import requests
 import time
 from datetime import date
 import re
+import numpy as np
+
 
 class PyStat(tk.Frame):
 	def __init__(self, parent, *args, **kwargs):
@@ -36,11 +38,22 @@ class PyStat(tk.Frame):
 
 	def calculate_values(self):
 		data = self.scrape_data()
-		
-		air_temp_list = [i.split('\t')[1] for i in data]
-		#bar_pres_list = [i.split('\t')[2] for i in data]
-		#wind_speed_list = [i.split('\t')[-1] for i in data]
-		print air_temp_list
+		air_temp_list, bar_pres_list, wind_speed_list = ([] for i in range(3)) # Make three empty lists
+		for i in data:
+			temp_list = i.split('\t') # Split each data piece by tab characters
+			air_temp_list.append(temp_list[1])
+			bar_pres_list.append(temp_list[2])
+			wind_speed_list.append(temp_list[-1])
+
+		# Convert our strings to floats to apply mean and median operations
+		air_temp_list = map(float, air_temp_list)
+		bar_pres_list = map(float, bar_pres_list)
+		wind_speed_list = map(float, wind_speed_list)
+
+		self.air_temp.insert("Mean: " + np.mean(air_temp_list))
+		self.bar_pres.insert("Mean: " + np.mean(bar_pres_list))
+		self.wind_speed.insert("Mean: " + np.mean(wind_speed_list))
+		#print air_temp_list
 		#print bar_pres_list
 		#print wind_speed_list
 		# @TODO
