@@ -43,16 +43,17 @@ class PyStat(tk.Frame):
 			temp_list = i.split('\t') # Split each data piece by tab characters
 			air_temp_list.append(temp_list[1])
 			bar_pres_list.append(temp_list[2])
-			wind_speed_list.append(temp_list[-1])
+			wind_speed_list.append(temp_list[-1].split('<')[0])
+
 
 		# Convert our strings to floats to apply mean and median operations
 		air_temp_list = map(float, air_temp_list)
 		bar_pres_list = map(float, bar_pres_list)
 		wind_speed_list = map(float, wind_speed_list)
 
-		self.air_temp.insert("Mean: " + np.mean(air_temp_list))
-		self.bar_pres.insert("Mean: " + np.mean(bar_pres_list))
-		self.wind_speed.insert("Mean: " + np.mean(wind_speed_list))
+		self.air_temp.insert(0, np.mean(air_temp_list))
+		self.bar_pres.insert(0, np.mean(bar_pres_list))
+		self.wind_speed.insert(0, np.mean(wind_speed_list))
 		#print air_temp_list
 		#print bar_pres_list
 		#print wind_speed_list
