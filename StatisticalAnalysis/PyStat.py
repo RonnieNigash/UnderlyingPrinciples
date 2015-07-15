@@ -36,7 +36,13 @@ class PyStat(tk.Frame):
 
 	def calculate_values(self):
 		data = self.scrape_data()
-		print data
+		
+		air_temp_list = [i.split('\t')[1] for i in data]
+		#bar_pres_list = [i.split('\t')[2] for i in data]
+		#wind_speed_list = [i.split('\t')[-1] for i in data]
+		print air_temp_list
+		#print bar_pres_list
+		#print wind_speed_list
 		# @TODO
 		# Take values from the past XX days, (week? month?)
 		# Scraped from HTML page -- new method?
